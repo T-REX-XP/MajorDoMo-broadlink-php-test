@@ -208,14 +208,10 @@ function usual(&$out) {
      if ($value==1) {
 		 	require(DIR_MODULES.$this->name.'/broadlink.class.php');
 			$id=$properties[$i]['DEVICE_ID'];
-			//console.log($id);
-			console.log('ntcn');
-			//DebMes($id);
 			$data=$properties[$i]['VALUE'];
 			$rec=SQLSelectOne("SELECT * FROM dev_httpbrige_devices WHERE ID='$id'");
 			$rm = Broadlink::CreateDevice($rec['TITLE'], $rec['MAC'], 80, $rec['TYPE']);
 			$rm->Auth();
-			//$rm->Enter_learning();
 			$rm->Send_data($data);
 			sg($object.".".$property, 0);
 	 }
